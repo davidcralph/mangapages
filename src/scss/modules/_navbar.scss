@@ -1,0 +1,29 @@
+.header-image {
+  background-image: url('https://ik.imagekit.io/david/manga/header.webp');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.input {
+  max-width: 50%;
+
+  &::placeholder {
+    color: rgb(145, 145, 145);
+  }
+}
+
+.navbar-item:hover {
+  background-color: rgb(0, 0, 0, 0.5) !important;
+}
+
+.navbar-burger {
+    color: white !important;
+}
+
+@media screen and (max-width: 1023px) {
+  .hero.is-info .navbar-menu {
+    background-color: rgb(0, 0, 0, 0.5);
+  }
+}

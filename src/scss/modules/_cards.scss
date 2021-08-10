@@ -1,0 +1,45 @@
+.card {
+  margin-top: 15px;
+}
+
+.mangaresults {
+  max-width: 25%;
+  align-content: center;
+  margin: auto;
+  width: 50%;
+}
+
+.wheretoview {
+  float: right;
+
+  img {
+    height: 32px;
+    width: auto;
+  }
+}
+
+.card-content {
+  span {
+    cursor: default;
+  }
+
+  .mal-info {
+    font-size: smaller;
+  }
+}
+
+.recommended-row {
+  display: flex;
+  flex-wrap: wrap;
+
+  .card {
+    width: 40%;
+    margin-right: 10px;
+  }
+
+@media screen and (max-width: 1323px) {
+    .card {
+      width: auto;
+    }
+  }
+}

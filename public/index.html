@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8' />
+  <link rel='icon' href='https://ik.imagekit.io/david/manga/favicon.png' />
+  <meta name='viewport' content='width=device-width, initial-scale=1' />
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css'
+    integrity='sha512-IgmDkwzs96t4SrChW29No3NXBIBv8baW490zk5aXvhCD8vuZM3yUSkbyTBcXohkySecyzIrUwiF/qV0cuPcL3Q=='
+    crossorigin='anonymous' referrerpolicy='no-referrer' />
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css'
+    integrity='sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=='
+    crossorigin='anonymous' referrerpolicy='no-referrer' />
+  <meta name='theme-color' content='#3e8ed0' />
+  <meta name='title' content='Manga Pages - Manga reader search engine' />
+  <meta name='description'
+    content='Easily find the place to read a manga, legally and safe. Search from over 1000+ titles and numerous industry supporting sources with more added frequently.' />
+  <meta name='keywords' content='manga, read, online, reader, legal, free, safe, davidjcralph' />
+  <meta name='author' content='manga.pages.dev' />
+  <meta name='language' content='English' />
+  <meta name='image' content='https://ik.imagekit.io/david/manga/favicon.png' />
+  <meta name='robots' content='index, follow'>
+  <meta property='og:title' content='Manga Pages - Manga reader search engine' />
+  <meta property='og:description' content='Easily find the place to read a manga, legally and safe. Search from over 1000+ titles and numerous industry supporting sources with more added frequently.' />
+  <meta property='og:image' content='https://ik.imagekit.io/david/manga/favicon.png' />
+  <meta property='og:url' content='https://manga.pages.dev/' />
+  <meta property='og:site_name' content='Manga Pages' />
+  <meta property='og:type' content='website' />
+  <meta property='og:locale' content='en_US' />
+  <meta property='og:locale:alternate' content='en_GB' />
+  <link rel='apple-touch-icon' href='https://ik.imagekit.io/david/manga/favicon.png' />
+  <title>Manga Pages</title>
+</head>
+
+<body>
+  <noscript>Sorry! Manga Pages only works with JavaScript enabled.</noscript>
+  <div id='root'></div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+      if ($navbarBurgers.length > 0) {
+        $navbarBurgers.forEach(el => {
+          el.addEventListener('click', () => {
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+          });
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

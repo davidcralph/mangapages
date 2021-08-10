@@ -1,0 +1,43 @@
+.dark {
+  color: white !important;
+
+  .footer a,
+  .card a {
+    color: rgb(180, 180, 255);
+
+    &:hover {
+      color: rgb(213, 213, 255);
+    }
+  }
+
+  .section {
+    background-color: rgb(38, 38, 38);
+  }
+
+  .input {
+    background-color: rgb(38, 38, 38);
+    border: none;
+    color: white;
+
+    &::placeholder {
+      color: rgb(211, 211, 211) !important;
+    }
+  }
+
+  .card {
+    background-color: rgb(88, 88, 88);
+    color: white;
+  }
+
+  .footer {
+    background-color: rgb(88, 88, 88);
+
+    strong {
+      color: #f0f0f0;
+    }
+  }
+
+  .subtitle {
+    color: white;
+  }
+}
