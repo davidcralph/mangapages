@@ -36,11 +36,11 @@ I built Manga Pages to solve the issue of finding which legal service provides a
 The backend is currently not opensource and most likely won't be for some time (it's a bit of a mess!). If you wish to make your own backend, all you really need is a ``/random`` and ``/search`` route that returns an array like this:
 ```js
 [
-    {
-        "title": "Hunter x Hunter",
-        "site": "viz",
-        "url": "https://www.viz.com/hunter-x-hunter" // depending on the site, this may be different and you will need custom code!
-    }
+  {
+    "title": "Hunter x Hunter",
+    "site": "viz",
+    "url": "https://www.viz.com/hunter-x-hunter" // depending on the site, this may be different and you will need custom code!
+  }
 ]
 ```
 

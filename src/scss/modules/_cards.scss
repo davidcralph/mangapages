@@ -35,11 +35,6 @@
   .card {
     width: 40%;
     margin-right: 10px;
-  }
-
-@media screen and (max-width: 1323px) {
-    .card {
-      width: auto;
-    }
+    display: table;
   }
 }
