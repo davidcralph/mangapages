@@ -16,23 +16,6 @@ export default class Navbar extends React.PureComponent {
     }
   }
 
-  componentDidMount() {
-    const theme = localStorage.getItem('theme');
-    const themeicon = document.getElementById('themeicon');
-
-    if (theme && theme === 'dark') {
-      document.body.classList.add('dark');
-    } else {
-      if (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.body.classList.add('dark');
-      } else {      
-        themeicon.classList.remove('fa-moon');
-        themeicon.classList.add('fa-sun');
-        document.body.classList.remove('dark');
-      }
-    }
-  }
-
   render() {
     return (
       <div className='hero-head'>

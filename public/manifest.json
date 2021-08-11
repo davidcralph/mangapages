@@ -1,0 +1,16 @@
+{
+    "short_name": "Manga Pages",
+    "name": "Manga Pages",
+    "icons": [
+      {
+        "src": "https://ik.imagekit.io/david/manga/favicon.png",
+        "sizes": "160x160",
+        "type": "image/png"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#ffffff"
+  }
+  
