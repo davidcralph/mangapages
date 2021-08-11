@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap');
+
 @import 'modules/navbar';
 @import 'modules/dark';
 @import 'modules/cards';
+
+body, ::placeholder {
+  font-family: 'Rubik', sans-serif !important;
+}
 
 .section {
   background-color: rgb(238, 238, 238);
