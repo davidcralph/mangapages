@@ -14,6 +14,7 @@ I built Manga Pages to solve the issue of finding which legal service provides a
 ## Supported Websites
 * [Azuki](https://www.azuki.co/)
 * [BOOK☆WALKER Global](https://global.bookwalker.jp/)
+* [ComicWalker](https://comic-walker.com/)
 * [Crunchyroll](https://www.crunchyroll.com)
 * [Inky Pen](https://inky-pen.com)
 * [j-novel club](https://j-novel.club)
