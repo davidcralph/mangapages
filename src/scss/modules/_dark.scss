@@ -31,6 +31,7 @@
 
   .footer {
     background-color: rgb(88, 88, 88);
+    color: white !important;
 
     strong {
       color: #f0f0f0;
@@ -40,4 +41,8 @@
   .subtitle {
     color: white;
   }
+}
+
+html.dark {
+  background-color: rgb(38, 38, 38);
 }

@@ -3,7 +3,7 @@ import React from 'react';
 
 export default class Navbar extends React.PureComponent {
   changeTheme = () => {
-    document.body.classList.toggle('dark');
+    document.documentElement.classList.toggle('dark');
     const themeicon = document.getElementById('themeicon');
     if (themeicon.classList.contains('fa-moon')) {
       themeicon.classList.remove('fa-moon');
