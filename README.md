@@ -20,6 +20,7 @@ I built Manga Pages to solve the issue of finding which legal service provides a
 * [j-novel club](https://j-novel.club)
 * [Manga Planet](https://read.mangaplanet.com)
 * [MangaPlus](https://mangaplus.shueisha.co.jp/updates)
+* [MyAnimeList](https://myanimelist.net/store)
 * [NETCOMICS](https://www.netcomics.com/)
 * [VIZ](https://www.viz.com)
 
