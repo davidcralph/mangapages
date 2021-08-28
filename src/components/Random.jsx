@@ -1,11 +1,11 @@
 import * as Constants from '../modules/constants';
 
-export default function RandomManga(props) {
+export default function RandomManga({ data }) {
   return (
     <>
       <h2 className='subtitle'>Random Manga</h2>
       <div className='recommended-row'>
-        {props.data.length > 0 ? props.data.map(manga => {
+        {data.length > 0 ? data.map(manga => {
           const slug = manga.title.toLowerCase().replaceAll(' ', '-');
           return (
             <div className='card' key={manga.title}>

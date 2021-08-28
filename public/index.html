@@ -29,29 +29,14 @@
   <meta property='og:locale' content='en_US' />
   <meta property='og:locale:alternate' content='en_GB' />
   <link rel='apple-touch-icon' href='https://ik.imagekit.io/david/manga/favicon.png' />
-  <script async defer data-website-id='aa1eff33-cb8e-45e8-8fa6-a9b3410d32da' src='https://umami.davidjcralph.co.uk/umami.js'></script>
   <link rel='manifest' href='%PUBLIC_URL%/manifest.json' />
+  <script async defer data-website-id='aa1eff33-cb8e-45e8-8fa6-a9b3410d32da' src='https://umami.davidjcralph.co.uk/umami.js'></script>
   <title>Manga Pages</title>
 </head>
 
 <body>
   <noscript>Sorry! Manga Pages only works with JavaScript enabled.</noscript>
   <div id='root'></div>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-      if ($navbarBurgers.length > 0) {
-        $navbarBurgers.forEach(el => {
-          el.addEventListener('click', () => {
-            const target = el.dataset.target;
-            const $target = document.getElementById(target);
-            el.classList.toggle('is-active');
-            $target.classList.toggle('is-active');
-          });
-        });
-      }
-    });
-  </script>
 </body>
 
 </html>

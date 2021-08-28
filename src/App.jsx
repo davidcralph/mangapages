@@ -1,4 +1,4 @@
-import React from 'react';
+import { PureComponent } from 'react';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -9,9 +9,10 @@ import Results from './components/Results';
 import * as Constants from './modules/constants';
 import mangaPlaceholders from './modules/mangaPlaceholders';
 
+import '@fontsource/rubik';
 import './scss/index.scss';
 
-export default class App extends React.PureComponent {
+export default class App extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,7 +58,6 @@ export default class App extends React.PureComponent {
   componentDidMount() {
     this.getData();
 
-    // themes
     const theme = localStorage.getItem('theme');
     const themeicon = document.getElementById('themeicon');
 

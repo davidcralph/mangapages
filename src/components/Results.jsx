@@ -1,26 +1,26 @@
 import * as Constants from '../modules/constants';
 
-export default function MangaResults(props) {
+export default function MangaResults({ done, data }) {
   const resultsText = () => {
-    if (props.done === false && props.data.length === 0) {
+    if (done === false && data.length === 0) {
       return 'Loading...';
     }
     
-    if (props.data.length === 0) {
+    if (data.length === 0) {
       return 'No manga found';
     }
     
-    if (props.data.length === 1) {
+    if (data.length === 1) {
       return '1 result';
     }
     
-    return props.data.length + ' results';
+    return data.length + ' results';
   }
     
   return (
     <>
       <h2 className='subtitle'>{resultsText()}</h2>
-      {props.data.map(manga => {
+      {data.map(manga => {
         const slug = manga.title.toLowerCase().replaceAll(' ', '-');
         return (
           <div className='card' key={manga.title + manga.site}>
