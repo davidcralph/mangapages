@@ -11,3 +11,8 @@ body, ::placeholder {
   background-color: rgb(238, 238, 238);
   min-height: 33vh;
 }
+
+.refresh {
+  cursor: pointer;
+  font-size: smaller;
+}

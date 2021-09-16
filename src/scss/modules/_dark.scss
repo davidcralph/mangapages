@@ -41,6 +41,18 @@
   .subtitle {
     color: white;
   }
+
+  .dropdown-content {
+    background-color: rgb(38, 38, 38);
+    
+    .dropdown-item {
+      color: white;
+
+      &:hover {
+        background-color: rgb(88, 88, 88);
+      }
+    }
+  }
 }
 
 html.dark {

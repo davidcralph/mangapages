@@ -49,7 +49,7 @@ export default class App extends PureComponent {
     });
   }
 
-  async getData() {
+  async getRandom() {
     const random = await (await fetch(Constants.API_URL + '/random')).json();
     this.setState({ 
       random: random,
@@ -67,11 +67,11 @@ export default class App extends PureComponent {
     });
 
     this.toggleDropdown();
-    this.getData();
+    this.getRandom();
   }
 
   componentDidMount() {
-    this.getData();
+    this.getRandom();
   }
 
   render() {
@@ -105,7 +105,7 @@ export default class App extends PureComponent {
           <div className='mangaresults'>
             {navigator.onLine ? this.state.query ? 
               <Results data={this.state.mangaResults} done={this.state.resultsDone} type={this.state.type}/> : 
-              <Random data={this.state.random} type={this.state.type}/>
+              <Random data={this.state.random} type={this.state.type} refresh={() => this.getRandom()}/>
             : <h2 className='subtitle'>Please connect to the internet</h2>}
           </div>
         </section>
