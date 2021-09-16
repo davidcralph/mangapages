@@ -8,6 +8,7 @@ import Results from './components/Results';
 
 import * as Constants from './modules/constants';
 import mangaPlaceholders from './modules/mangaPlaceholders';
+import lightNovelPlaceholders from './modules/lightNovelPlaceholders';
 
 import '@fontsource/rubik';
 import './scss/index.scss';
@@ -50,7 +51,7 @@ export default class App extends PureComponent {
   }
 
   async getRandom() {
-    const random = await (await fetch(Constants.API_URL + '/random')).json();
+    const random = await (await fetch(`${Constants.API_URL}/random?type=${this.state.type.replace(' ', '')}`)).json();
     this.setState({ 
       random: random,
       done: true 
@@ -62,8 +63,14 @@ export default class App extends PureComponent {
   }
 
   setType(type) { 
+    let placeholder = mangaPlaceholders();
+    if (type === 'light novel') {
+      placeholder = lightNovelPlaceholders();
+    }
+
     this.setState({
-      type
+      type,
+      placeholder
     });
 
     this.toggleDropdown();
