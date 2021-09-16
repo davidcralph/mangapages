@@ -1,4 +1,4 @@
-import { PureComponent } from 'react';
+import { PureComponent, createRef } from 'react';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -21,8 +21,10 @@ export default class App extends PureComponent {
       random: [],
       done: false,
       resultsDone: false,
-      placeholder: mangaPlaceholders()
+      placeholder: mangaPlaceholders(),
+      type: 'manga'
     };
+    this.dropdown = createRef();
   }
 
   async onSearch(query) {
@@ -39,7 +41,7 @@ export default class App extends PureComponent {
       resultsDone: false
     });
 
-    const mangaResults = await (await fetch(`${Constants.API_URL}/search?input=${query}`)).json();
+    const mangaResults = await (await fetch(`${Constants.API_URL}/search?input=${query}&type=${this.state.type.replace(' ', '')}`)).json();
 
     this.setState({
       mangaResults: mangaResults,
@@ -55,23 +57,21 @@ export default class App extends PureComponent {
     });
   }
 
+  toggleDropdown() {
+    this.dropdown.current.classList.toggle('is-active');
+  }
+
+  setType(type) { 
+    this.setState({
+      type
+    });
+
+    this.toggleDropdown();
+    this.getData();
+  }
+
   componentDidMount() {
     this.getData();
-
-    const theme = localStorage.getItem('theme');
-    const themeicon = document.getElementById('themeicon');
-
-    if (theme && theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      if (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
-      } else {      
-        themeicon.classList.remove('fa-moon');
-        themeicon.classList.add('fa-sun');
-        document.documentElement.classList.remove('dark');
-      }
-    }
   }
 
   render() {
@@ -82,7 +82,20 @@ export default class App extends PureComponent {
           <div className='hero-body'>
             {navigator.onLine ? 
               <div className='container has-text-centered'>
-                <h1 className='title'>Search for a manga...</h1>
+                <h1 className='title'>Search for a <div className='dropdown' ref={this.dropdown}>
+                  <div className='dropdown-trigger' onClick={() => this.toggleDropdown()}>
+                    {this.state.type}
+                    <span className='icon is-small'>
+                      <i className='fas fa-angle-down' aria-hidden='true'/>
+                    </span>
+                    </div>
+                    <div className='dropdown-menu' role='menu'>
+                      <div className='dropdown-content'>
+                        <span className='dropdown-item' onClick={() => this.setType('manga')}>Manga</span>
+                        <span className='dropdown-item' onClick={() => this.setType('light novel')}>Light Novel</span>
+                      </div>
+                    </div>
+                </div> ...</h1>
                 <input className='input' type='search' value={this.state.query} onChange={(data) => this.onSearch(data.target.value)} placeholder={this.state.placeholder} />
               </div>
             : null}
@@ -91,8 +104,8 @@ export default class App extends PureComponent {
         <section className='section'>
           <div className='mangaresults'>
             {navigator.onLine ? this.state.query ? 
-              <Results data={this.state.mangaResults} done={this.state.resultsDone}/> : 
-              <Random data={this.state.random}/>
+              <Results data={this.state.mangaResults} done={this.state.resultsDone} type={this.state.type}/> : 
+              <Random data={this.state.random} type={this.state.type}/>
             : <h2 className='subtitle'>Please connect to the internet</h2>}
           </div>
         </section>

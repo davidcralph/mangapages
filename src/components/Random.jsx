@@ -1,9 +1,14 @@
 import * as Constants from '../modules/constants';
 
-export default function RandomManga({ data }) {
+export default function RandomManga({ data, type }) {
+  let text = 'Manga';
+  if (type === 'light novel') {
+    text = 'light novels';
+  }
+
   return (
     <>
-      <h2 className='subtitle'>Random Manga</h2>
+      <h2 className='subtitle'>Random {text}</h2>
       <div className='recommended-row'>
         {data.length > 0 ? data.map(manga => {
           const slug = manga.title.toLowerCase().replaceAll(' ', '-');

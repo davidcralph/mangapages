@@ -23,6 +23,21 @@ export default class Navbar extends PureComponent {
   }
 
   componentDidMount() {
+    const theme = localStorage.getItem('theme');
+    const themeicon = this.themeIcon.current;
+
+    if (theme && theme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      if (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark');
+      } else {      
+        themeicon.classList.remove('fa-moon');
+        themeicon.classList.add('fa-sun');
+        document.documentElement.classList.remove('dark');
+      }
+    }
+
     // mobile navbar
     const navbarBurger = this.navbarBurger.current;
     navbarBurger.addEventListener('click', () => {

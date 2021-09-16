@@ -1,12 +1,15 @@
 import * as Constants from '../modules/constants';
 
-export default function MangaResults({ done, data }) {
+export default function MangaResults({ done, data, type }) {
   const resultsText = () => {
     if (done === false && data.length === 0) {
       return 'Loading...';
     }
     
     if (data.length === 0) {
+      if (type === 'light novel') {
+        return 'No light novels found';
+      }
       return 'No manga found';
     }
     

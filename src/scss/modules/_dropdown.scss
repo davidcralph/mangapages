@@ -1,0 +1,29 @@
+.dropdown-content {
+  color: black;
+  font-size: 1rem;
+  width: 82%;
+
+  .dropdown-item {
+    padding: 5px;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: #dfdfdf;
+    }
+  }
+}
+
+.dropdown-trigger {
+  user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  i {
+    position: absolute;
+    padding-top: 2px;
+    margin-left: 12px;
+  }
+}
