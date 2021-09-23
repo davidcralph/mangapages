@@ -38,7 +38,7 @@ export default class App extends PureComponent {
 
     // set query first
     this.setState({
-      query: query,
+      query,
       resultsDone: false
     });
 
@@ -53,7 +53,7 @@ export default class App extends PureComponent {
   async getRandom() {
     const random = await (await fetch(`${Constants.API_URL}/random?type=${this.state.type.replace(' ', '')}`)).json();
     this.setState({ 
-      random: random,
+      random,
       done: true 
     });
   }

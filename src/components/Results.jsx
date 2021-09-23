@@ -10,6 +10,7 @@ export default function MangaResults({ done, data, type }) {
       if (type === 'light novel') {
         return 'No light novels found';
       }
+
       return 'No manga found';
     }
     

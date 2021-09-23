@@ -65,10 +65,10 @@ export default class Navbar extends PureComponent {
             </div>
             <div id='navbarmobile' className='navbar-menu'>
               <div className='navbar-end'>
-                <a className='navbar-item' href='https://docs.davidjcralph.co.uk/#/manga'>
+                <a className='navbar-item' href='https://docs.davidcralph.co.uk/#/manga'>
                   Docs
                 </a>
-                <a className='navbar-item' href='https://github.com/davidjcralph/mangapages'>
+                <a className='navbar-item' href='https://github.com/davidcralph/mangapages'>
                   GitHub
                 </a>
                 <a className='navbar-item' onClick={this.changeTheme}>
