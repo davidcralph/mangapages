@@ -27,7 +27,7 @@ export default function MangaResults({ done, data, type }) {
       {data.map(manga => {
         const slug = manga.title.toLowerCase().replaceAll(' ', '-');
         return (
-          <div className='card' key={manga.title + manga.site}>
+          <div className='card' key={Math.random()}>
             <div className='card-content'>
               <span>{manga.title}</span>
               <div className='wheretoview'>
