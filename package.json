@@ -11,10 +11,10 @@
   "private": true,
   "dependencies": {
     "@fontsource/rubik": "^4.5.0",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "sass": "^1.35.2",
+    "sass": "^1.42.1",
     "workbox-core": "^5.1.4",
     "workbox-expiration": "^5.1.4",
     "workbox-precaching": "^5.1.4",

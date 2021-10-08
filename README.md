@@ -12,8 +12,8 @@ I built Manga Pages to solve the issue of finding which legal service provides a
 📈 Database updated frequently to always show the latest manga/light novels
 
 ## Supported Websites
-* [Azuki](https://www.azuki.co/) (manga)
-* [BOOK☆WALKER Global](https://global.bookwalker.jp/) (manga and light novels)
+* [Azuki](https://www.azuki.co) (manga)
+* [BOOK☆WALKER Global](https://global.bookwalker.jp) (manga and light novels)
 * [ComicWalker](https://comic-walker.com/) (manga)
 * [Crunchyroll](https://www.crunchyroll.com) (manga)
 * [Inky Pen](https://inky-pen.com) (manga)
@@ -21,6 +21,7 @@ I built Manga Pages to solve the issue of finding which legal service provides a
 * [Manga Planet](https://read.mangaplanet.com) (manga)
 * [MangaPlus](https://mangaplus.shueisha.co.jp/updates) (manga)
 * [MyAnimeList](https://myanimelist.net/store) (manga)
+* [Renta](https://www.ebookrenta.com) (manga)
 * [VIZ](https://www.viz.com) (manga)
 
 *and more soon!*
@@ -48,7 +49,7 @@ The backend is currently not opensource and most likely won't be for some time (
 ## Resources Used
 [yattatachi's legal online manga sites list](https://yattatachi.com/legal-online-manga-sites)
 
-[wherecanireadmanga.com](https://wherecanireadmanga.com/)
+[wherecanireadmanga.com](https://wherecanireadmanga.com)
 
 ## License
 [MIT](LICENSE)
