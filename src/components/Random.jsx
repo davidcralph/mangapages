@@ -7,7 +7,7 @@ export default function RandomManga({ data, type, refresh }) {
     <>
       <h2 className='subtitle'>Random {subtitleText} <i className='fas fa-redo refresh' onClick={() => refresh()}/></h2>
       <div className='recommended-row'>
-        {data.length > 0 ? data.map(manga => {
+        {data.length > 0 ? data.map((manga) => {
           const slug = manga.title.toLowerCase().replaceAll(' ', '-');
           return (
             <div className='card' key={Math.random()}>

@@ -7,8 +7,7 @@ import Random from './components/Random';
 import Results from './components/Results';
 
 import * as Constants from './modules/constants';
-import mangaPlaceholders from './modules/mangaPlaceholders';
-import lightNovelPlaceholders from './modules/lightNovelPlaceholders';
+import { mangaPlaceholder, lightNovelPlaceholder } from './modules/placeholders';
 
 import './scss/index.scss';
 
@@ -21,7 +20,7 @@ export default class App extends PureComponent {
       random: [],
       done: false,
       resultsDone: false,
-      placeholder: mangaPlaceholders(),
+      placeholder: mangaPlaceholder(),
       type: 'manga'
     };
     this.dropdown = createRef();
@@ -62,9 +61,9 @@ export default class App extends PureComponent {
   }
 
   async setType(type) { 
-    let placeholder = mangaPlaceholders();
+    let placeholder = mangaPlaceholder();
     if (type === 'light novel') {
-      placeholder = lightNovelPlaceholders();
+      placeholder = lightNovelPlaceholder();
     }
 
     // todo: running .getRandom() for some reason doesn't get the correct type - need to figure out why
@@ -112,9 +111,9 @@ export default class App extends PureComponent {
         </section>
         <section className='section'>
           <div className='mangaresults'>
-            {navigator.onLine ? this.state.query ? 
+            {navigator.onLine ? (this.state.query ? 
               <Results data={this.state.mangaResults} done={this.state.resultsDone} type={this.state.type}/> : 
-              <Random data={this.state.random} type={this.state.type} refresh={() => this.getRandom()}/>
+              <Random data={this.state.random} type={this.state.type} refresh={() => this.getRandom()}/>)
             : <h2 className='subtitle'>Please connect to the internet</h2>}
           </div>
         </section>

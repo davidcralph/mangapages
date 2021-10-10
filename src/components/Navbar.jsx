@@ -6,6 +6,7 @@ export default class Navbar extends PureComponent {
     super();
     this.themeIcon = createRef();
     this.navbarBurger = createRef();
+    this.navbar = createRef();
   }
 
   changeTheme = () => {
@@ -41,10 +42,8 @@ export default class Navbar extends PureComponent {
     // mobile navbar
     const navbarBurger = this.navbarBurger.current;
     navbarBurger.addEventListener('click', () => {
-      const target = navbarBurger.dataset.target;
-      const $target = document.getElementById(target);
       navbarBurger.classList.toggle('is-active');
-      $target.classList.toggle('is-active');
+      this.navbar.current.classList.toggle('is-active');
     });
   }
 
@@ -57,13 +56,13 @@ export default class Navbar extends PureComponent {
               <a className='navbar-item logo' onClick={() => this.props.resetSearch()}>
                 📖 Manga Pages
               </a>
-              <span className='navbar-burger' ref={this.navbarBurger} data-target='navbarmobile'>
+              <span className='navbar-burger' ref={this.navbarBurger}>
                 <span></span>
                 <span></span>
                 <span></span>
               </span>
             </div>
-            <div id='navbarmobile' className='navbar-menu'>
+            <div ref={this.navbar} className='navbar-menu'>
               <div className='navbar-end'>
                 <a className='navbar-item' href='https://docs.davidcralph.co.uk/#/manga'>
                   Docs

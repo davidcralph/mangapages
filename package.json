@@ -15,7 +15,7 @@
     "bulma": "^0.9.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^4.0.3",
     "sass": "^1.42.1",
     "workbox-core": "^5.1.4",
     "workbox-expiration": "^5.1.4",
