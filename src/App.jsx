@@ -10,7 +10,6 @@ import * as Constants from './modules/constants';
 import mangaPlaceholders from './modules/mangaPlaceholders';
 import lightNovelPlaceholders from './modules/lightNovelPlaceholders';
 
-import '@fontsource/rubik';
 import './scss/index.scss';
 
 export default class App extends PureComponent {
@@ -62,19 +61,22 @@ export default class App extends PureComponent {
     this.dropdown.current.classList.toggle('is-active');
   }
 
-  setType(type) { 
+  async setType(type) { 
     let placeholder = mangaPlaceholders();
     if (type === 'light novel') {
       placeholder = lightNovelPlaceholders();
     }
 
+    // todo: running .getRandom() for some reason doesn't get the correct type - need to figure out why
+    const random = await (await fetch(`${Constants.API_URL}/random?type=${type.replace(' ', '')}`)).json();
+
     this.setState({
       type,
-      placeholder
+      placeholder,
+      random
     });
 
     this.toggleDropdown();
-    this.getRandom();
   }
 
   componentDidMount() {
