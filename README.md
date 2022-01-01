@@ -2,7 +2,7 @@
 📖 Easily find the place to read a manga or light novel
 
 ## About
-I built Manga Pages to solve the issue of finding which legal service provides a manga/light novel. Search engines don't always show this information (and often show lots of ad-filled unofficial sites). The site provides a simple hub to finding what you want to read next showing which sites have the manga/light novel available and a MyAnimeList button to read information about it. Think of this service as like [because.moe](https://because.moe) but for manga/light novels. The souce code for the backend can be found 
+I built Manga Pages to solve the issue of finding which legal service provides a manga/light novel. Search engines don't always show this information (and often show lots of ad-filled unofficial sites). The site provides a simple hub to finding what you want to read next showing which sites have the manga/light novel available and a MyAnimeList button to read information about it. Think of this service as like [because.moe](https://because.moe) but for manga/light novels. The source code for the backend can be found 
 [here](https://github.com/davidcralph/mangapages-backend).
 
 ## Features
