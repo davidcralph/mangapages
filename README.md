@@ -25,10 +25,9 @@ I built Manga Pages to solve the issue of finding which legal service provides a
 * [Renta](https://www.ebookrenta.com) (manga)
 * [VIZ](https://www.viz.com) (manga)
 
-## Future ideas
+## Future Ideas
 * More services
 * Support for multiple regions (currently only been testing United Kingdom but content may be available elsewhere)
-* Developer API
 * Checkbox for only showing free websites/subscription services/paid ebooks
 * List services that provide physical copies
 * Support for more than just manga and light novels
