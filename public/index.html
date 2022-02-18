@@ -9,13 +9,15 @@
   <meta name='title' content='Manga Pages - Manga reader search engine' />
   <meta name='description'
     content='Easily find the place to read a manga, light novel, manhwa or manhua, legally and safe. Search from over 1000+ titles and numerous industry supporting sources with more added frequently.' />
-  <meta name='keywords' content='manga, read, online, reader, legal, free, safe, manhua, manga, light novels, manhwa davidcralph' />
+  <meta name='keywords'
+    content='manga, read, online, reader, legal, free, safe, manhua, manga, light novels, manhwa davidcralph' />
   <meta name='author' content='manga.pages.dev' />
   <meta name='language' content='English' />
   <meta name='image' content='https://ik.imagekit.io/david/manga/favicon.png' />
   <meta name='robots' content='index, follow'>
   <meta property='og:title' content='Manga Pages - Manga reader search engine' />
-  <meta property='og:description' content='Easily find the place to read a manga, light novel, manhwa or manhua, legally and safe. Search from over 1000+ titles and numerous industry supporting sources with more added frequently.' />
+  <meta property='og:description'
+    content='Easily find the place to read a manga, light novel, manhwa or manhua, legally and safe. Search from over 1000+ titles and numerous industry supporting sources with more added frequently.' />
   <meta property='og:image' content='https://ik.imagekit.io/david/manga/favicon.png' />
   <meta property='og:url' content='https://manga.pages.dev/' />
   <meta property='og:site_name' content='Manga Pages' />
@@ -24,13 +26,33 @@
   <meta property='og:locale:alternate' content='en_GB' />
   <link rel='apple-touch-icon' href='https://ik.imagekit.io/david/manga/favicon.png' />
   <link rel='manifest' href='%PUBLIC_URL%/manifest.json' />
-  <script async defer data-website-id='aa1eff33-cb8e-45e8-8fa6-a9b3410d32da' src='https://umami.davidcralph.co.uk/umami.js'></script>
+  <script async defer data-website-id='aa1eff33-cb8e-45e8-8fa6-a9b3410d32da'
+    src='https://umami.davidcralph.co.uk/umami.js'></script>
   <title>Manga Pages</title>
 </head>
 
 <body>
   <noscript>Sorry! Manga Pages only works with JavaScript enabled.</noscript>
   <div id='root'></div>
+  <script>
+    /**
+     * String.prototype.replaceAll() polyfill
+     * https://gomakethings.com/how-to-replace-a-section-of-a-string-with-another-one-with-vanilla-js/
+     * @author Chris Ferdinandi
+     * @license MIT
+     */
+    if (!String.prototype.replaceAll) {
+      String.prototype.replaceAll = function (str, newStr) {
+        // If a regex pattern
+        if (Object.prototype.toString.call(str).toLowerCase() === '[object regexp]') {
+          return this.replace(str, newStr);
+        }
+
+        // If a string
+        return this.replace(new RegExp(str, 'g'), newStr);
+      };
+    }
+  </script>
 </body>
 
 </html>
