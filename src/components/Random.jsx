@@ -1,7 +1,20 @@
 import * as Constants from '../modules/constants';
 
 export default function RandomManga({ data, type, refresh }) {
-  const subtitleText = (type === 'light novel') ? 'light novels' : 'manga';
+  let subtitleText;
+  switch (type) {
+    case 'light novel':
+      subtitleText = 'light novels';
+      break;
+    case 'manhwa':
+      subtitleText = 'manhwa';
+      break;
+    case 'manhua':
+      subtitleText = 'manhua';
+      break;
+    default:
+      subtitleText = 'manga';
+  }
 
   return (
     <>

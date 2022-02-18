@@ -7,7 +7,7 @@ import Random from './components/Random';
 import Results from './components/Results';
 
 import * as Constants from './modules/constants';
-import { mangaPlaceholder, lightNovelPlaceholder } from './modules/placeholders';
+import { mangaPlaceholder, lightNovelPlaceholder, manhwaPlaceholder, manhuaPlaceholder } from './modules/placeholders';
 
 import './scss/index.scss';
 
@@ -29,7 +29,7 @@ export default class App extends PureComponent {
   async onSearch(query) {
     if (!query) {
       return this.setState({
-        query: query,
+        query,
         resultsDone: false
       });
     }
@@ -43,7 +43,7 @@ export default class App extends PureComponent {
     const mangaResults = await (await fetch(`${Constants.API_URL}/search?input=${query}&type=${this.state.type.replace(' ', '')}`)).json();
 
     this.setState({
-      mangaResults: mangaResults,
+      mangaResults,
       resultsDone: true
     });
   }
@@ -61,9 +61,19 @@ export default class App extends PureComponent {
   }
 
   async setType(type) { 
-    let placeholder = mangaPlaceholder();
-    if (type === 'light novel') {
-      placeholder = lightNovelPlaceholder();
+    let placeholder;
+    switch (type) {
+      case 'light novel':
+        placeholder = lightNovelPlaceholder();
+        break;
+      case 'manhwa':
+        placeholder = manhwaPlaceholder();
+        break;
+      case 'manhua':
+        placeholder = manhuaPlaceholder();
+        break; 
+      default:
+        placeholder = mangaPlaceholder();
     }
 
     // todo: running .getRandom() for some reason doesn't get the correct type - need to figure out why
@@ -101,6 +111,8 @@ export default class App extends PureComponent {
                       <div className='dropdown-content'>
                         <span className='dropdown-item' onClick={() => this.setType('manga')}>Manga</span>
                         <span className='dropdown-item' onClick={() => this.setType('light novel')}>Light Novel</span>
+                        <span className='dropdown-item' onClick={() => this.setType('manhwa')}>Manhwa</span>
+                        <span className='dropdown-item' onClick={() => this.setType('manhua')}>Manhua</span>
                       </div>
                     </div>
                 </div> ...</h1>

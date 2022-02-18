@@ -1,6 +1,6 @@
-// just a few popular manga/light novels for the search
+// just a few popular manga/light novels/manhwa/manhua for the search
 // this file won't need to be updated probably
-// the list is pretty much taken entirely from the MyAnimeList highest rated manga/light novels
+// the list is pretty much taken entirely from the MyAnimeList highest rated manga/light novels/manhwa/manhua
 
 const mangaList = [
   'Tokyo Ghoul',
@@ -69,10 +69,52 @@ const lightNovelList = [
   'Hai to Gensou no Grimgar'
 ];
 
+const manhwaList = [
+  'Solo Levelling',
+  'The Horizon',
+  'Wind Breaker',
+  'Who Made Me a Princess',
+  'Tower of God',
+  'The Legend of the Northern Blade',
+  'The Breaker',
+  'Omniscient Reader',
+  'Annarasumanara',
+  'The Boxer',
+  'Sweet Home',
+  'Your Throne',
+  'Spirit Fingers',
+  'Noblesse'
+];
+
+const manhuaList = [
+  'Here U Are',
+  'Song of the Long March',
+  'SQ: Begin W/Your Name!',
+  'Mo Dao Zu Shi',
+  'Feng Shen Ji',
+  'The One',
+  'Tian Guan Ci Fu',
+  'The Ravages of Time',
+  'Doupo Cangqiong',
+  'Douluo Dalu',
+  'Please Take My Brother Away',
+  'Gu Fang Bu Zi Shang',
+  'Blood and Steel',
+  'City of Darkness'
+];
+
 export function mangaPlaceholder() {
   return mangaList[Math.floor(Math.random() * mangaList.length)];
 }
 
 export function lightNovelPlaceholder() {
   return lightNovelList[Math.floor(Math.random() * lightNovelList.length)];
+}
+
+export function manhwaPlaceholder() {
+  return manhwaList[Math.floor(Math.random() * manhwaList.length)];
+}
+
+export function manhuaPlaceholder() {
+  return manhuaList[Math.floor(Math.random() * manhuaList.length)];
 }

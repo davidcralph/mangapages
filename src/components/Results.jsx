@@ -7,11 +7,16 @@ export default function MangaResults({ done, data, type }) {
     }
     
     if (data.length === 0) {
-      if (type === 'light novel') {
-        return 'No light novels found';
+      switch (type) {
+        case 'light novel':
+          return 'No light novels found';
+        case 'manhwa':
+          return 'No manhwa found';
+        case 'manhua':
+          return 'No manhua found';
+        default:
+          return 'No manga found';
       }
-
-      return 'No manga found';
     }
     
     if (data.length === 1) {
