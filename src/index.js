@@ -2,17 +2,17 @@ import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
 import { StrictMode } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import App from './App';
 
-render(
+const root = createRoot(document.getElementById('root'));
+root.render(
   <StrictMode>
     <App/>
-  </StrictMode>,
-  document.getElementById('root')
+  </StrictMode>
 );
 
 serviceWorkerRegistration.register();
