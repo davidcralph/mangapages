@@ -10,7 +10,7 @@ if (!fs.existsSync('./data.json')) {
 let data = require('./data.json');
 if (data.length === 0) {
     console.info('Crawl started..');
-    crawl(log).then(() => {
+    crawl().then(() => {
         // refresh data
         delete require.cache[require.resolve('./data.json')];
         data = require('./data.json');

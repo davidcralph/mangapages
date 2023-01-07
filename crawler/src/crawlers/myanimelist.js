@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const BlockResourcesPlugin = require('puppeteer-extra-plugin-block-resources');
 const sleep = require('../util/sleep');
+const { executablePath } = require('puppeteer');
 
 puppeteer.use(StealthPlugin());
 puppeteer.use(BlockResourcesPlugin(new Set(['image', 'stylesheet', 'script', 'font'])));
@@ -9,7 +10,8 @@ puppeteer.use(BlockResourcesPlugin(new Set(['image', 'stylesheet', 'script', 'fo
 module.exports = async () => {
     // MAL api is garbage/non-existant
     const browser = await puppeteer.launch({
-        headless: false
+        headless: false,
+        executablePath: executablePath()
     });
 
     // todo: automate this

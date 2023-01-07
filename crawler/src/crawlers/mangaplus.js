@@ -1,7 +1,8 @@
 const puppeteer = require('puppeteer-extra');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const BlockResourcesPlugin = require('puppeteer-extra-plugin-block-resources');
-const scrollPageToBottom = require('puppeteer-autoscroll-down');
+const { scrollPageToBottom } = require('puppeteer-autoscroll-down');
+const { executablePath } = require('puppeteer');
 
 puppeteer.use(StealthPlugin());
 puppeteer.use(BlockResourcesPlugin(new Set(['image', 'stylesheet', 'script', 'font'])));
@@ -9,7 +10,9 @@ puppeteer.use(BlockResourcesPlugin(new Set(['image', 'stylesheet', 'script', 'fo
 module.exports = async () => {
     // until i can figure out how their api works, we will have to do with using puppeteer
     // slower, but works
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        executablePath: executablePath()
+    });
     const page = await browser.newPage();
     await page.goto('https://mangaplus.shueisha.co.jp/manga_list/all');
 

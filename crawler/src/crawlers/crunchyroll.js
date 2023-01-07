@@ -2,13 +2,16 @@ const puppeteer = require('puppeteer-extra');
 const cheerio = require('cheerio');
 const StealthPlugin = require('puppeteer-extra-plugin-stealth');
 const BlockResourcesPlugin = require('puppeteer-extra-plugin-block-resources');
+const { executablePath } = require('puppeteer');
 
 puppeteer.use(StealthPlugin());
 puppeteer.use(BlockResourcesPlugin(new Set(['image', 'stylesheet', 'script', 'font'])));
 
 module.exports = async () => {
     // crunchyroll uses cloudflare so we try to not be a robot
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+        executablePath: executablePath()
+    });
     const page = await browser.newPage();
     await page.goto('https://www.crunchyroll.com/comics/manga/alpha?group=all');
     // todo: stop using cheerio

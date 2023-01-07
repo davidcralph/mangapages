@@ -3,13 +3,14 @@
     "start": "cd src && node index.js"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.10",
+    "cheerio": "^1.0.0-rc.12",
     "esm": "^3.2.25",
+    "node-fetch": "2.6.7",
     "node-fetch-cookies": "^2.0.3",
-    "puppeteer": "^10.2.0",
-    "puppeteer-autoscroll-down": "^0.1.7",
-    "puppeteer-extra": "^3.1.18",
-    "puppeteer-extra-plugin-block-resources": "^2.2.9",
-    "puppeteer-extra-plugin-stealth": "^2.7.8"
+    "puppeteer": "^19.4.1",
+    "puppeteer-autoscroll-down": "^1.1.1",
+    "puppeteer-extra": "^3.3.4",
+    "puppeteer-extra-plugin-block-resources": "^2.4.2",
+    "puppeteer-extra-plugin-stealth": "^2.11.1"
   }
 }
