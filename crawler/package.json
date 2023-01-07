@@ -1,0 +1,15 @@
+{
+  "scripts": {
+    "start": "cd src && node index.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "esm": "^3.2.25",
+    "node-fetch-cookies": "^2.0.3",
+    "puppeteer": "^10.2.0",
+    "puppeteer-autoscroll-down": "^0.1.7",
+    "puppeteer-extra": "^3.1.18",
+    "puppeteer-extra-plugin-block-resources": "^2.2.9",
+    "puppeteer-extra-plugin-stealth": "^2.7.8"
+  }
+}

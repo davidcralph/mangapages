@@ -1,9 +1,13 @@
 # Folders
 build/
+.vercel/
 .vscode/
 .history/
 node_modules/
 
 # Files
 yarn.lock
+data.json
+dataTest.json
+pnpm-lock.yaml
 package-lock.json

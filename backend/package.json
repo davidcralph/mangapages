@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "lambda-rate-limiter": "^3.0.1",
+    "match-sorter": "^6.3.1",
+    "node-fetch": "^2.6.7"
+  }
+}
