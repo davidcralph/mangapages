@@ -6,6 +6,7 @@ import TitleCard from '@/components/TitleCard';
 import { Button } from '@/components/ui/button';
 
 import { logoUrl, pluralType, siteName, type Title, type TitleType } from '@/lib/api';
+import { CARD_GAP, CARD_HEIGHT, usePageSize } from '@/lib/use-page-size';
 import { cn } from '@/lib/utils';
 
 interface SearchResultsProps {
@@ -18,8 +19,6 @@ interface SearchResultsProps {
   page: number;
   onPageChange: (page: number) => void;
 }
-
-const PAGE_SIZE = 20;
 
 function resultsText(count: number, type: TitleType): string {
   if (count === 0) {
@@ -42,7 +41,8 @@ export default function SearchResults({
   page,
   onPageChange,
 }: SearchResultsProps) {
-  const top = useRef<HTMLDivElement>(null);
+  const list = useRef<HTMLDivElement>(null);
+  const pageSize = usePageSize(list);
 
   // sites in the results, plus any still selected so they can be turned off
   const siteCounts = new Map<string, number>();
@@ -67,22 +67,16 @@ export default function SearchResults({
     : data;
 
   // a shared link can point past the end once the results change
-  const pageCount = Math.max(Math.ceil(filtered.length / PAGE_SIZE), 1);
+  const pageCount = Math.max(Math.ceil(filtered.length / pageSize), 1);
   const currentPage = Math.min(page, pageCount);
-  const pageTitles = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+  const pageTitles = filtered.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
   const toggleSite = (site: string) => {
     onSitesChange(sites.includes(site) ? sites.filter((s) => s !== site) : [...sites, site]);
   };
 
-  const goToPage = (next: number) => {
-    onPageChange(next);
-    top.current?.scrollIntoView();
-  };
-
   return (
     <div
-      ref={top}
       aria-busy={loading}
       className={cn(loading && 'opacity-50 transition-opacity duration-200 delay-150')}
     >
@@ -141,9 +135,16 @@ export default function SearchResults({
         </div>
       )}
 
-      <div className="flex flex-col gap-4">
+      {/* a full page's height even on the last page, so the pager stays where it is */}
+      <div
+        ref={list}
+        className="flex flex-col gap-4"
+        style={{
+          minHeight: pageCount > 1 ? pageSize * (CARD_HEIGHT + CARD_GAP) - CARD_GAP : undefined,
+        }}
+      >
         {pageTitles.map((title) => (
-          <TitleCard key={title.url} title={title} />
+          <TitleCard key={title.url} title={title} singleLine />
         ))}
       </div>
 
@@ -152,7 +153,7 @@ export default function SearchResults({
           <Button
             variant="outline"
             disabled={currentPage === 1}
-            onClick={() => goToPage(currentPage - 1)}
+            onClick={() => onPageChange(currentPage - 1)}
           >
             <ChevronLeft />
             Previous
@@ -163,7 +164,7 @@ export default function SearchResults({
           <Button
             variant="outline"
             disabled={currentPage === pageCount}
-            onClick={() => goToPage(currentPage + 1)}
+            onClick={() => onPageChange(currentPage + 1)}
           >
             Next
             <ChevronRight />

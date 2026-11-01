@@ -55,11 +55,6 @@ export function fetchSearch(
   return getJson(`/search?input=${encodeURIComponent(query)}&type=${apiType(type)}`, signal);
 }
 
-export function malUrl(title: string): string {
-  const slug = title.toLowerCase().replaceAll(' ', '-');
-  return `${API_URL}/mal/${encodeURIComponent(slug)}`;
-}
-
 // display name from the site list, falls back to the capitalised id
 export function siteName(site: string): string {
   return SITES.find((s) => s.id === site)?.name ?? site.charAt(0).toUpperCase() + site.slice(1);

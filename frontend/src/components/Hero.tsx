@@ -11,6 +11,8 @@ interface HeroProps {
   onLogoClick?: () => void;
   // grow to fill the page height (used on the 404 page)
   fill?: boolean;
+  // shrink out of the way of search results, the height is also in use-page-size.ts
+  compact?: boolean;
   className?: string;
   children?: ReactNode;
 }
@@ -18,13 +20,20 @@ interface HeroProps {
 const goHome = () => navigate('/');
 
 // photo header shared by every page
-export default function Hero({ onLogoClick = goHome, fill, className, children }: HeroProps) {
+export default function Hero({
+  onLogoClick = goHome,
+  fill,
+  compact,
+  className,
+  children,
+}: HeroProps) {
   return (
     // min height matches the search page hero so every page lines up
     <header
       className={cn(
-        'relative flex flex-col text-white',
-        fill ? 'flex-1' : 'min-h-[35.75rem] sm:min-h-[36.75rem]',
+        'relative flex flex-col text-white transition-[min-height] duration-300 ease-out motion-reduce:transition-none',
+        fill && 'flex-1',
+        !fill && (compact ? 'min-h-64 sm:min-h-52' : 'min-h-[35.75rem] sm:min-h-[36.75rem]'),
       )}
     >
       <HeroBackground />
@@ -38,7 +47,7 @@ export default function Hero({ onLogoClick = goHome, fill, className, children }
         {children && (
           <div
             className={cn(
-              'mx-auto flex max-w-2xl flex-1 flex-col items-center justify-center gap-5 px-4 text-center',
+              'mx-auto flex max-w-2xl flex-1 flex-col items-center justify-center gap-5 px-4 text-center transition-[padding,gap] duration-300 ease-out motion-reduce:transition-none',
               className,
             )}
           >

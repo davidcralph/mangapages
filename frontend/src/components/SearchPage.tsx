@@ -13,6 +13,7 @@ import { randomPlaceholder } from '@/lib/placeholders';
 import { readUrlState, writeUrlState } from '@/lib/url-state';
 import { useOnline } from '@/lib/use-online';
 import { useTitles } from '@/lib/use-titles';
+import { cn } from '@/lib/utils';
 
 export default function SearchPage() {
   const online = useOnline();
@@ -67,13 +68,27 @@ export default function SearchPage() {
 
   return (
     <div className="flex min-h-svh flex-col">
-      <Hero onLogoClick={clearSearch} className="pt-20 pb-24 sm:pt-28 sm:pb-36">
+      <Hero
+        compact={!!query}
+        onLogoClick={clearSearch}
+        className={query ? 'gap-3 pb-4' : 'pt-20 pb-24 sm:pt-28 sm:pb-36'}
+      >
         {online && (
           <>
-            <h1 className={heroTitle}>Find where to read it</h1>
-            <p className={heroText}>
-              Search official, legal sources for manga, light novels, manhwa and manhua.
-            </p>
+            {/* 0fr to 1fr rows animates to and from the text's real height */}
+            <div
+              className={cn(
+                'grid transition-[grid-template-rows,opacity] duration-300 ease-out motion-reduce:transition-none',
+                query ? 'grid-rows-[0fr] opacity-0' : 'grid-rows-[1fr]',
+              )}
+            >
+              <div className="flex min-h-0 flex-col items-center gap-5 overflow-hidden">
+                <h1 className={heroTitle}>Find where to read it</h1>
+                <p className={heroText}>
+                  Search official, legal sources for manga, light novels, manhwa and manhua.
+                </p>
+              </div>
+            </div>
             <TypePicker type={type} onChange={changeType} />
             <SearchBox
               value={query}
@@ -86,7 +101,7 @@ export default function SearchPage() {
         )}
       </Hero>
 
-      <main className="flex-1 bg-background px-4 py-10">
+      <main className={cn('flex-1 bg-background px-4', query ? 'py-6' : 'py-10')}>
         <div className="mx-auto w-full max-w-xl">
           {!online ? (
             <h2 className="text-xl">Please connect to the internet</h2>

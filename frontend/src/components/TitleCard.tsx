@@ -2,26 +2,43 @@ import { ExternalLink } from 'lucide-react';
 
 import { Card, CardContent } from '@/components/ui/card';
 
-import { logoUrl, malUrl, siteName, type Title } from '@/lib/api';
+import { logoUrl, siteName, type Title } from '@/lib/api';
+import { cn } from '@/lib/utils';
 
-export default function TitleCard({ title }: { title: Title }) {
+interface TitleCardProps {
+  title: Title;
+  // keep every card the same height, the full title is in the tooltip
+  singleLine?: boolean;
+}
+
+export default function TitleCard({ title, singleLine }: TitleCardProps) {
   return (
     <Card>
       <CardContent className="flex items-start justify-between gap-4">
-        <div className="flex flex-col gap-2">
-          <span className="cursor-default font-medium">{title.title}</span>
-          <a
-            className="link inline-flex w-fit items-center gap-1 text-xs"
-            href={malUrl(title.title)}
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="flex min-w-0 flex-col gap-2">
+          <span
+            title={singleLine ? title.title : undefined}
+            className={cn('cursor-default font-medium', singleLine && 'truncate')}
           >
-            MyAnimeList
-            <ExternalLink aria-hidden className="size-3" />
-          </a>
+            {title.title}
+          </span>
+          <div className="flex flex-wrap gap-x-3 gap-y-1">
+            {title.sites.map(({ site, url }) => (
+              <a
+                key={site}
+                className="link inline-flex w-fit items-center gap-1 text-xs"
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {siteName(site)}
+                <ExternalLink aria-hidden className="size-3" />
+              </a>
+            ))}
+          </div>
         </div>
 
-        <div className="flex max-w-18 shrink-0 flex-wrap justify-end gap-2">
+        <div className="flex shrink-0 gap-2">
           {title.sites.map(({ site, url }) => (
             <a key={site} href={url} target="_blank" rel="noopener noreferrer">
               <img
