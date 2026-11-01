@@ -11,3 +11,9 @@ data.json
 dataTest.json
 pnpm-lock.yaml
 package-lock.json
+
+# Crawler output bundled into the worker
+backend/src/data/*.json
+.wrangler/
+dist/
+*.local

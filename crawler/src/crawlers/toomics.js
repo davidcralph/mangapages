@@ -1,16 +1,16 @@
-const fetch = require('node-fetch');
-const cheerio = require('cheerio');
+import * as cheerio from 'cheerio';
 
-module.exports = async (ua) => {
-    const data = await (await fetch('https://toomics.com/en/webtoon/ranking', { headers: { 'user-agent': ua }})).text();
-    const $ = cheerio.load(data);
-    const newArray = [];
-    $('li > .visual').each((_i, title) => {
-        newArray.push({
-            title: $(title).find('.title').text(),
-            site: 'toomics',
-            url: 'https://toomics.com' + $(title).find('a').attr('href')
-        });
-    });
-    return newArray;
-};
+import { getText } from '../util/fetch.js';
+
+// only the ranking page, which is family safe
+export default async function toomics() {
+  const $ = cheerio.load(await getText('https://toomics.com/en/webtoon/ranking'));
+
+  return $('li > .visual')
+    .map((_, el) => ({
+      title: $(el).find('.title').text().trim(),
+      site: 'toomics',
+      url: 'https://toomics.com' + $(el).find('a').attr('href'),
+    }))
+    .get();
+}

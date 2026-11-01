@@ -3,7 +3,7 @@
   "name": "Manga Pages",
   "icons": [
     {
-      "src": "https://ik.imagekit.io/david/manga/favicon.png",
+      "src": "/favicon.png",
       "sizes": "160x160",
       "type": "image/png"
     }
