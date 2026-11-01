@@ -1,7 +1,19 @@
 {
+  "name": "backend",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "types": "wrangler types",
+    "typecheck": "tsc --noEmit"
+  },
   "dependencies": {
-    "lambda-rate-limiter": "^3.0.1",
-    "match-sorter": "^6.3.1",
-    "node-fetch": "^2.6.7"
+    "hono": "^4.13.16",
+    "match-sorter": "^8.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "wrangler": "^4.156.0"
   }
 }

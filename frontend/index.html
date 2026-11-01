@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="/favicon.png" />
+    <meta name="theme-color" content="#e11d48" />
+
+    <meta name="title" content="Manga Pages - Manga reader search engine" />
+    <meta
+      name="description"
+      content="Easily find the place to read a manga, light novel, manhwa or manhua, legally and safe. Search from over 1000+ titles and numerous industry supporting sources with more added frequently."
+    />
+    <meta
+      name="keywords"
+      content="manga, read, online, reader, legal, free, safe, manhua, manga, light novels, manhwa davidcralph"
+    />
+    <meta name="author" content="manga.pages.dev" />
+    <meta name="language" content="English" />
+    <meta name="image" content="https://manga.pages.dev/favicon.png" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:title" content="Manga Pages - Manga reader search engine" />
+    <meta
+      property="og:description"
+      content="Easily find the place to read a manga, light novel, manhwa or manhua, legally and safe. Search from over 1000+ titles and numerous industry supporting sources with more added frequently."
+    />
+    <meta property="og:image" content="https://manga.pages.dev/favicon.png" />
+    <meta property="og:url" content="https://manga.pages.dev/" />
+    <meta property="og:site_name" content="Manga Pages" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale:alternate" content="en_GB" />
+
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="preload" as="image" href="/header.jpg" fetchpriority="high" />
+
+    <title>Manga Pages</title>
+
+    <script>
+      // apply theme before first paint
+      (function () {
+        var theme = localStorage.getItem('theme');
+        if (
+          theme === 'dark' ||
+          (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+  </head>
+
+  <body>
+    <noscript>Sorry! Manga Pages only works with JavaScript enabled.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

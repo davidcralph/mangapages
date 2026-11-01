@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.wrangler/
+bun.lock
+*.md
+backend/src/data/
+backend/worker-configuration.d.ts

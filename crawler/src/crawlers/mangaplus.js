@@ -1,44 +1,39 @@
-const puppeteer = require('puppeteer-extra');
-const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const BlockResourcesPlugin = require('puppeteer-extra-plugin-block-resources');
-const { scrollPageToBottom } = require('puppeteer-autoscroll-down');
-const { executablePath } = require('puppeteer');
+import { scrollPageToBottom } from 'puppeteer-autoscroll-down';
 
-puppeteer.use(StealthPlugin());
-puppeteer.use(BlockResourcesPlugin(new Set(['image', 'stylesheet', 'script', 'font'])));
+import { launch } from '../util/browser.js';
+import sleep from '../util/sleep.js';
 
-module.exports = async () => {
-    // until i can figure out how their api works, we will have to do with using puppeteer
-    // slower, but works
-    const browser = await puppeteer.launch({
-        executablePath: executablePath()
-    });
+// the site is all javascript, so puppeteer it is
+// the old "all" list is split into these now
+const LISTS = ['ongoing', 'completed', 'one_shot'];
+
+export default async function mangaplus() {
+  const browser = await launch();
+  let titles = [];
+
+  try {
     const page = await browser.newPage();
-    await page.goto('https://mangaplus.shueisha.co.jp/manga_list/all');
 
-    await page.waitForSelector('.AllTitle-module_image_JIEI9', {
-        visible: true
-    });
+    for (const list of LISTS) {
+      await sleep();
+      await page.goto(`https://mangaplus.shueisha.co.jp/manga_list/${list}`);
+      // class names end in a build hash, so only match the start
+      await page.waitForSelector('a[class*="AllTitle-module_allTitle"]');
+      await scrollPageToBottom(page);
 
-    await scrollPageToBottom(page);
-
-    const list = await page.evaluate(() => {
-        let newArray = [];
-        // this will probably need changing often
-        const divs = document.querySelectorAll('.AllTitle-module_allTitle_1CIUC');
-
-        divs.forEach(div => {
-           newArray.push({
-              title: div.querySelector('.AllTitle-module_title_20PzS').innerText,
-              site: 'mangaplus',
-              url: 'https://mangaplus.shueisha.co.jp/titles/' + div.querySelector('.AllTitle-module_image_JIEI9').src.split('/title/')[1].split('/')[0].toLowerCase().replaceAll(' ', '-'),
-           });
-        });
-    
-        return newArray;
-    });
-    
+      titles = titles.concat(
+        await page.evaluate(() =>
+          [...document.querySelectorAll('a[class*="AllTitle-module_allTitle"]')].map((link) => ({
+            title: link.querySelector('p[class*="AllTitle-module_title_"]').innerText,
+            site: 'mangaplus',
+            url: link.href,
+          })),
+        ),
+      );
+    }
+  } finally {
     await browser.close();
+  }
 
-    return list;
-};
+  return titles;
+}

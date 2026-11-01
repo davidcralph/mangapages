@@ -1,54 +1,25 @@
-const puppeteer = require('puppeteer-extra');
-const StealthPlugin = require('puppeteer-extra-plugin-stealth');
-const BlockResourcesPlugin = require('puppeteer-extra-plugin-block-resources');
-const sleep = require('../util/sleep');
-const { executablePath } = require('puppeteer');
+import { crawlPages, pageNumbers } from '../util/browser.js';
 
-puppeteer.use(StealthPlugin());
-puppeteer.use(BlockResourcesPlugin(new Set(['image', 'stylesheet', 'script', 'font'])));
+// renta has no api, unfortunately
+// todo: work out the page counts automatically
+const CATEGORIES = [
+  { name: 'Shonen_Manga', pages: 3 },
+  { name: 'Shojo_Manga', pages: 7 },
+];
 
-module.exports = async () => {
-    // renta has no api, unfortunately
-    const browser = await puppeteer.launch({
-        executablePath: executablePath()
-    });
+export default function renta() {
+  const urls = CATEGORIES.flatMap((category) =>
+    pageNumbers(category.pages).map(
+      (page) =>
+        `https://www.ebookrenta.com/renta/sc/frm/list?rsi=c&genm=${category.name}&page=${page}&type=desc&col=info`,
+    ),
+  );
 
-    // todo: automate this
-    let categories = [{
-        name: 'Shonen_Manga',
-        pages: 3
-    },{
-        name: 'Shojo_Manga',
-        pages: 7
-    }];
-    
-    let newArray = [];
-
-    const page = await browser.newPage();
-
-    categories.forEach(category => {
-        for (let i = 0; i < category.pages; i++) {
-            await sleep();
-            await page.goto(`https://www.ebookrenta.com/renta/sc/frm/list?rsi=c&genm=${category.name}&page=${i + 1}&type=desc&col=info`);
-    
-            const list = await page.evaluate(() => {
-                const titles = document.querySelectorAll('.headlines > a');
-                let array = [];
-    
-                titles.forEach(title => {
-                   array.push({
-                      title: title.innerText,
-                      site: 'renta',
-                      url: title.href
-                   });
-                });
-                return array;
-            });
-            newArray = newArray.concat(list);
-        }
-    });
-
-    await browser.close();
-
-    return newArray;
-};
+  return crawlPages(urls, () =>
+    [...document.querySelectorAll('.headlines > a')].map((link) => ({
+      title: link.innerText,
+      site: 'renta',
+      url: link.href,
+    })),
+  );
+}

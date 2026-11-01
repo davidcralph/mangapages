@@ -1,0 +1,27 @@
+{
+  "name": "mangapages",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "crawler"
+  ],
+  "trustedDependencies": [
+    "esbuild",
+    "workerd",
+    "sharp",
+    "puppeteer"
+  ],
+  "scripts": {
+    "dev:frontend": "bun --filter frontend dev",
+    "dev:backend": "bun --filter backend dev",
+    "build": "bun --filter frontend build",
+    "crawl": "cd crawler && bun src/index.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10"
+  }
+}
