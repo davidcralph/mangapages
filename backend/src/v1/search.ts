@@ -25,7 +25,7 @@ export default new Hono<AppEnv>().get(
     const { input, type } = c.req.valid('query');
 
     const results = matchSorter(getDataset(type), input, {
-      keys: ['title', 'site'],
+      keys: ['title', 'sites.*.site'],
       threshold: rankings.WORD_STARTS_WITH,
     });
 

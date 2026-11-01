@@ -22,6 +22,7 @@ export default function SearchPage() {
   const [query, setQuery] = useState(initial.query);
   // selected site filters, empty means all sites
   const [sites, setSites] = useState<string[]>(initial.sites);
+  const [page, setPage] = useState(initial.page);
   // bumped by the refresh button to get new random picks
   const [refreshKey, setRefreshKey] = useState(0);
 
@@ -34,8 +35,8 @@ export default function SearchPage() {
 
   // keep the url in sync so searches can be shared
   useEffect(() => {
-    writeUrlState({ query, type, sites });
-  }, [query, type, sites]);
+    writeUrlState({ query, type, sites, page });
+  }, [query, type, sites, page]);
 
   function changeType(next: TitleType) {
     if (next === type) {
@@ -45,11 +46,23 @@ export default function SearchPage() {
     setType(next);
     setPlaceholder(randomPlaceholder(next));
     setSites([]);
+    setPage(1);
+  }
+
+  function changeQuery(next: string) {
+    setQuery(next);
+    setPage(1);
+  }
+
+  function changeSites(next: string[]) {
+    setSites(next);
+    setPage(1);
   }
 
   function clearSearch() {
     setQuery('');
     setSites([]);
+    setPage(1);
   }
 
   return (
@@ -64,7 +77,7 @@ export default function SearchPage() {
             <TypePicker type={type} onChange={changeType} />
             <SearchBox
               value={query}
-              onChange={setQuery}
+              onChange={changeQuery}
               onClear={clearSearch}
               placeholder={placeholder}
               label={`Search ${TYPE_LABELS[type].toLowerCase()}`}
@@ -83,7 +96,9 @@ export default function SearchPage() {
               loading={search.loading}
               type={type}
               sites={sites}
-              onSitesChange={setSites}
+              onSitesChange={changeSites}
+              page={page}
+              onPageChange={setPage}
             />
           ) : (
             // keep the random picks up until the first search returns instead of flashing a loader

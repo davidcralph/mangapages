@@ -1,3 +1,7 @@
+import { useRef } from 'react';
+
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
 import TitleCard from '@/components/TitleCard';
 import { Button } from '@/components/ui/button';
 
@@ -11,7 +15,11 @@ interface SearchResultsProps {
   // selected sites, empty means all of them
   sites: string[];
   onSitesChange: (sites: string[]) => void;
+  page: number;
+  onPageChange: (page: number) => void;
 }
+
+const PAGE_SIZE = 20;
 
 function resultsText(count: number, type: TitleType): string {
   if (count === 0) {
@@ -31,11 +39,17 @@ export default function SearchResults({
   type,
   sites,
   onSitesChange,
+  page,
+  onPageChange,
 }: SearchResultsProps) {
+  const top = useRef<HTMLDivElement>(null);
+
   // sites in the results, plus any still selected so they can be turned off
   const siteCounts = new Map<string, number>();
   for (const title of data) {
-    siteCounts.set(title.site, (siteCounts.get(title.site) ?? 0) + 1);
+    for (const { site } of title.sites) {
+      siteCounts.set(site, (siteCounts.get(site) ?? 0) + 1);
+    }
   }
 
   for (const site of sites) {
@@ -48,14 +62,27 @@ export default function SearchResults({
     (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
   );
 
-  const filtered = sites.length ? data.filter((title) => sites.includes(title.site)) : data;
+  const filtered = sites.length
+    ? data.filter((title) => title.sites.some(({ site }) => sites.includes(site)))
+    : data;
+
+  // a shared link can point past the end once the results change
+  const pageCount = Math.max(Math.ceil(filtered.length / PAGE_SIZE), 1);
+  const currentPage = Math.min(page, pageCount);
+  const pageTitles = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   const toggleSite = (site: string) => {
     onSitesChange(sites.includes(site) ? sites.filter((s) => s !== site) : [...sites, site]);
   };
 
+  const goToPage = (next: number) => {
+    onPageChange(next);
+    top.current?.scrollIntoView();
+  };
+
   return (
     <div
+      ref={top}
       aria-busy={loading}
       className={cn(loading && 'opacity-50 transition-opacity duration-200 delay-150')}
     >
@@ -115,10 +142,34 @@ export default function SearchResults({
       )}
 
       <div className="flex flex-col gap-4">
-        {filtered.map((title) => (
+        {pageTitles.map((title) => (
           <TitleCard key={title.url} title={title} />
         ))}
       </div>
+
+      {pageCount > 1 && (
+        <nav aria-label="Pagination" className="mt-6 flex items-center justify-between gap-4">
+          <Button
+            variant="outline"
+            disabled={currentPage === 1}
+            onClick={() => goToPage(currentPage - 1)}
+          >
+            <ChevronLeft />
+            Previous
+          </Button>
+          <span className="text-sm text-muted-foreground tabular-nums">
+            Page {currentPage} of {pageCount}
+          </span>
+          <Button
+            variant="outline"
+            disabled={currentPage === pageCount}
+            onClick={() => goToPage(currentPage + 1)}
+          >
+            Next
+            <ChevronRight />
+          </Button>
+        </nav>
+      )}
     </div>
   );
 }

@@ -21,16 +21,20 @@ export default function TitleCard({ title }: { title: Title }) {
           </a>
         </div>
 
-        <a href={title.url} target="_blank" rel="noopener noreferrer" className="shrink-0">
-          <img
-            src={logoUrl(title.site)}
-            alt={`${title.site} icon`}
-            title={siteName(title.site)}
-            width={32}
-            height={32}
-            className="size-8 object-contain"
-          />
-        </a>
+        <div className="flex max-w-18 shrink-0 flex-wrap justify-end gap-2">
+          {title.sites.map(({ site, url }) => (
+            <a key={site} href={url} target="_blank" rel="noopener noreferrer">
+              <img
+                src={logoUrl(site)}
+                alt={`${site} icon`}
+                title={siteName(site)}
+                width={32}
+                height={32}
+                className="size-8 object-contain"
+              />
+            </a>
+          ))}
+        </div>
       </CardContent>
     </Card>
   );

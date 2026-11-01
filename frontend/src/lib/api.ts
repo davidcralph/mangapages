@@ -14,10 +14,15 @@ export const TYPE_LABELS: Record<TitleType, string> = {
   manhua: 'Manhua',
 };
 
-export interface Title {
-  title: string;
+export interface Source {
   site: string;
   url: string;
+}
+
+// site and url are the first source, sites has all of them
+export interface Title extends Source {
+  title: string;
+  sites: Source[];
 }
 
 // plural used in text, e.g. "random light novels"
