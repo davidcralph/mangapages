@@ -5,6 +5,7 @@
   "compatibility_date": "2026-10-01",
   "observability": { "enabled": true },
   "alias": { "@/": "./src/" },
+  "routes": [{ "pattern": "manga.davidcralph.co.uk", "custom_domain": true }],
   // One limiter per route limit (requests per IP per 60s)
   "ratelimits": [
     { "name": "RL_DEFAULT", "namespace_id": "1001", "simple": { "limit": 30, "period": 60 } },
