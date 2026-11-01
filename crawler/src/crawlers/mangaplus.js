@@ -24,7 +24,7 @@ export default async function mangaplus() {
       titles = titles.concat(
         await page.evaluate(() =>
           [...document.querySelectorAll('a[class*="AllTitle-module_allTitle"]')].map((link) => ({
-            title: link.querySelector('[class*="AllTitle-module_title"]').innerText,
+            title: link.querySelector('p[class*="AllTitle-module_title_"]').innerText,
             site: 'mangaplus',
             url: link.href,
           })),
