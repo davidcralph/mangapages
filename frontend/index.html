@@ -39,8 +39,21 @@
 
     <title>Manga Pages</title>
 
+    <style>
+      .fallback-error {
+        max-width: 32rem;
+        margin: 4rem auto;
+        padding: 1rem 1.25rem;
+        border-left: 4px solid #e11d48;
+        font-family: sans-serif;
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #111;
+        background: #fff1f2;
+      }
+    </style>
+
     <script>
-      // apply theme before first paint
       (function () {
         var theme = localStorage.getItem('theme');
         if (
@@ -54,8 +67,14 @@
   </head>
 
   <body>
-    <noscript>Sorry! Manga Pages only works with JavaScript enabled.</noscript>
+    <noscript>
+      <div class="fallback-error">Sorry! Manga Pages only works with JavaScript enabled.</div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script nomodule>
+      document.getElementById('root').innerHTML =
+        '<div class="fallback-error">Sorry! Manga Pages does not support Internet Explorer or other outdated browsers. Please use a modern browser such as Edge, Chrome or Firefox.</div>';
+    </script>
   </body>
 </html>
