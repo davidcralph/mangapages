@@ -22,7 +22,7 @@ export default function TypePicker({ type, onChange }: TypePickerProps) {
           aria-pressed={t === type}
           onClick={() => onChange(t)}
           className={cn(
-            'rounded-full px-4 text-sm font-medium',
+            'rounded-full px-4 text-sm font-medium transition-transform',
             t === type
               ? 'bg-white text-black hover:bg-white'
               : 'bg-transparent text-white hover:bg-white/15',
